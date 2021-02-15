@@ -13,15 +13,9 @@ Folder Structure:
 ## How to Run
 Please make sure your system has golang installed. To do so you can refer to this link https://golang.org/doc/install. 
 
-There are 2 ways to run this project:
-1. From src folders
   - Open terminal
-  - Go to src folders and run in terminal: $ go run main.go
+  - Go to [project_folder]/src and run in terminal: $ go run main.go
   
-2. Run Build
-  - Open terminal
-  - Go to build folders and double click main
-
 When running, the project will take port 8081 to run the server. Open the browser and locate url http://localhost:8081/
 (*Make sure there is no other application that running/use port 8081. If so, you can temporarily shutdown the apps that run/use port 8081)
 

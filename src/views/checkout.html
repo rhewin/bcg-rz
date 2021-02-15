@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{.page.Title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/main.css">
+  </head>
+  <body>    
+    <div class="container">
+      <h1 class="txt-center">{{.page.Title}}</h1><br>
+      <p class="title">Summary Your Order</p>      
+      <form id="frmCheckout" action="/checkout" method="POST">
+        <div id="table" class="table">
+          <div class="row row-5 txt-center title">
+            <div class="col col-sku">SKU</div>
+            <div class="col col-name">Name</div>
+            <div class="col col-price">Price</div>
+            <div class="col col-qty">Qty</div>
+            <div class="col col-total">Total</div>
+          </div>                              
+          {{range $i, $p := .products}}
+            <div class="row row-5">
+              <div class="col col-sku">{{ .sku }}</div>
+              <div class="col col-name">
+                <div class="wrapper-name">
+                {{ .name }}<br>
+                <small>Stock: <span class="stock" id="stock-{{ .sku }}" data-stock="{{ .qty }}">{{ .qty }}</span></small>
+                </div>
+              </div>
+              <div class="col col-price">
+                <span class="symbol">$</span>
+                <span class="price" id="price-{{ .sku }}" name="price-{{ .sku }}" data-price="{{ .price }}">{{ .price_display }}</span>
+              </div>
+              <div class="col col-qty txt-center">
+                {{ index $.cart.Post_qty $i }}
+              </div>
+              <div class="col col-total">
+                <span class="symbol">$</span>
+                <span class="price total-price" id="total-{{ .sku }}" name="total[]">{{ index $.cart.Post_total $i }}</span>
+              </div>
+            </div>
+          {{end}}            
+        </div><br>
+
+        <div class="summary">
+          <h3>Your Total Cart:</h3>
+          <div class="subtotal">
+            Subtotal: <span class="symbol">$</span><span id="subtotal-amount">{{ .subtotal_display }}</span>
+          </div><br/>
+          <div class="subtotal">
+            Discount: (<span class="symbol">$</span><span id="disc-amount" data-disc="{{ .disc }}">{{ .disc }}</span>)
+          </div><br/>
+          <div class="subtotal">
+            <h3>Grand Total:</h3>
+            <input type="text" id="grandtotal-amount" value="$ {{ .grandtotal }}" data-grandtotal="{{ .grandtotal }}" size="10" readonly>
+          </div><br/>
+          <div class="action">
+            <button class="btn-checkout" onclick="processCheckout(this)">Pay</button>
+          </div>
+        </div>      
+      </form>
+    </div>   
+
+    <script type="text/javascript">      
+      var disc = document.getElementById('disc-amount').dataset.disc * 1;
+      document.getElementById('disc-amount').innerHTML = disc.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+      var grandtotal = document.getElementById('grandtotal-amount').dataset.grandtotal * 1;
+      document.getElementById('grandtotal-amount').value = '$ '+ grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    </script>
+  </body>
+</html>

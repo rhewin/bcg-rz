@@ -1,0 +1,37 @@
+{
+  "promotion_rules": [
+    {
+      "must_have": {
+        "sku": "43N23P",
+        "qty": 1,
+        "min_qty": null
+      },
+      "get_free": {
+        "sku": "234234",
+        "qty": 1
+      },
+      "count_as": null,
+      "percent_disc": null
+    },
+    {
+      "must_have": {
+        "sku": "120P90",
+        "qty": 3,
+        "min_qty": null
+      },
+      "get_free": null,
+      "count_as": 2,
+      "percent_disc": null
+    },
+    {
+      "must_have": {
+        "sku": "A304SD",
+        "qty": null,
+        "min_qty": 3
+      },
+      "get_free": null,
+      "count_as": null,
+      "percent_disc": 10
+    }    
+  ]
+}

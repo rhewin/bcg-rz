@@ -1,0 +1,25 @@
+type Cart {
+   user:User
+   items:[ItemOrder]
+   summary:SummaryOrder
+}
+
+type User {
+   id:ID!
+   name:String
+}
+
+type ItemOrder {
+   sku:ID!
+   name:String
+   price:Float
+   stock:Int
+   qtyOrdered:Int
+   totalOrdered:Float   
+}
+
+type SummaryOrder {
+   subtotal:Float
+   disc:Float
+   grandtotal:Float
+}
